@@ -1,0 +1,11 @@
+# แหล่งอ้างอิงระหว่างทำงาน — ไม่ publish (มี raw dump จาก ChatGPT share)
+ref/
+
+# local tooling
+.DS_Store
+node_modules/
+.venv/
+__pycache__/
+
+# local claude settings
+.claude/settings.local.json
