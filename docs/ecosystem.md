@@ -45,6 +45,9 @@ ecosystem-brief
 
 ## Layer Model
 
+> 🟡 **Proposed / Under Review** — ทั้ง layer model และกฎข้ามชั้นด้านล่างเป็นข้อเสนอตั้งต้น
+> ยังไม่ผ่านการยืนยันจากเจ้าของ repo แต่ละตัว ดู [สถานะการ review](#สถานะการ-review)
+
 เราแบ่ง ecosystem เป็น 9 ชั้น เรียงจากรากขึ้นไปหาผู้ใช้
 
 ### L0 — Foundation
@@ -111,13 +114,36 @@ harness คือสิ่งที่ทำให้ผลลัพธ์ขอ
    L0 Foundation (standards / conventions)
 ```
 
-**กฎข้ามชั้นที่สำคัญ**
+### กฎข้ามชั้น  🟡 Proposed
 
 1. ข้ามชั้นลงได้ **ไม่เกิน 1 ชั้น** — ถ้าต้องข้ามมากกว่านั้น แปลว่า contract หายไปหนึ่งตัว
 2. ห้ามพึ่งพาย้อนขึ้น — L3 ต้องไม่รู้จัก L6
 3. L2 คือคอขวดโดยตั้งใจ — ทุก LLM call ผ่านที่นี่ที่เดียว
 
-> ⚠️ ข้อ 1–3 เป็นข้อเสนอเริ่มต้น ยังต้องให้ทีมยืนยัน — ดู [ai/context.md](../ai/context.md)
+> ⚠️ ข้อ 1–3 ยังไม่ผ่าน review — **อย่าเพิ่งใช้เป็นเหตุผลปฏิเสธ PR ของทีมอื่น**
+> เอาไว้ใช้ตั้งคำถามว่า "ตรงนี้ควรมี contract ไหม" มากกว่าใช้เป็นกฎบังคับ
+
+---
+
+## สถานะการ review
+
+`ecosystem-brief` เป็น **ข้อเสนอ** จนกว่าเจ้าของ repo จะยืนยัน
+ตารางนี้คือสิ่งที่ต้องเคลียร์ก่อนจะถือว่า layer model นิ่ง
+
+| หัวข้อ | สถานะ | ใครต้องยืนยัน |
+|---|---|---|
+| Layer model L0–L8 | 🟡 Proposed | เจ้าของ repo ทุกตัวใน [registry](repositories.md) |
+| กฎข้ามชั้น 1–3 | 🟡 Proposed | `agent-platform` |
+| Boundary B1 (gateway) | 🟡 Proposed | `llm-gateway` |
+| Boundary B2 (contract) | 🟡 Proposed | `agent-platform` |
+| Boundary B3 (tool) | 🟡 Proposed | เจ้าของ MCP/Skill |
+| Boundary B4 (knowledge) | 🟡 Proposed | `enterprise-knowledge` |
+| Boundary B5 (map) | ✅ ตกลงแล้ว | `ecosystem-brief` |
+| Capability Index | 🟡 Proposed + ยังไม่ครบ | เจ้าของ repo แต่ละตัว |
+| `owner` ใน registry | ⛔ ยังว่างทั้งหมด | ต้องหาคนก่อน |
+
+**วิธี review:** เปิด issue ต่อหนึ่งหัวข้อ แล้วให้เจ้าของ repo ตอบว่า ยืนยัน / แก้ / ไม่เห็นด้วย
+เมื่อยืนยันแล้วให้ลบป้าย 🟡 ออก และย้าย boundary ที่ตกลงแล้วไป `docs/contracts.md`
 
 ---
 
@@ -125,9 +151,9 @@ harness คือสิ่งที่ทำให้ผลลัพธ์ขอ
 
 | Phase | ทำอะไร | สถานะ |
 |---|---|---|
-| **1** | Ecosystem Map — README + layer + repository registry | 🚧 กำลังทำ |
+| **1** | Ecosystem Map — README + layer + repository registry + capability index | 🚧 เหลือเติม owner |
 | **2** | Architecture Map — boundary และภาพ mental model กลาง | ⏳ |
-| **3** | AI Context — `ai/context.md` + decision flow ให้ agent | 🚧 ร่างแล้ว รอ review |
+| **3** | AI Context — `ai/context.md` + decision flow ให้ agent | ✅ ร่างเสร็จ รอ review |
 | **4** | เชื่อม `ecosystem-intelligence` ให้ตรวจ drift จากของจริง | ⏳ |
 | **5** | ให้ `agent-platform` / MCP / Skills ใช้ brief เป็น entry point | ⏳ |
 
